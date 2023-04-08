@@ -16,20 +16,19 @@
         $fullname =  $_POST['fullname'];
         $email =  $_POST['email'];
         $phone_number =  $_POST['phone_number'];
-        if(empty($fullname)){
-            echo "<p style='color: red'>Please fill in your full name</p>";
-            return ;
+        $check = checkerror(["fullname"=>$fullname, "email"=>$email, "phone_number"=>$phone_number]);
+        if($check == true){
+            displayinfo($fullname, $email, $phone_number);  
         }
-        if(empty($email)){
-            echo "<p style='color: red'>Please fill in your email</p>";
-            return ;
+    }
+    function checkerror(array $data){
+        foreach($data as $index => $value){
+            if(empty($value)){
+                echo "<p style='color: red'>Please fill in your $index</p>";
+                return false;
+            }
         }
-        
-        if(empty($phone_number)){
-            echo "<p style='color: red'>Please fill in your phone number</p>";
-            return ;
-        }
-        displayinfo($fullname, $email, $phone_number);  
+        return true;
     }
     function displayinfo($fullname, $email, $phone_number){
         echo '<h1>Your Information</h1>';
