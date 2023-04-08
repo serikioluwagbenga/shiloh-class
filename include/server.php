@@ -22,13 +22,14 @@
         }
     }
     function checkerror(array $data){
+        $noerr  = true;
         foreach($data as $index => $value){
             if(empty($value)){
                 echo "<p style='color: red'>Please fill in your $index</p>";
-                return false;
+                $noerr = false;
             }
         }
-        return true;
+        return $noerr;
     }
     function displayinfo($fullname, $email, $phone_number){
         echo '<h1>Your Information</h1>';
